@@ -1,0 +1,18 @@
+[project]
+name = "spectrogram"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "librosa>=0.11.0",
+    "matplotlib>=3.10.3",
+    "moderngl>=5.12.0",
+    "pillow>=11.2.1",
+    "pyrr>=0.10.3",
+    "pyqt5-qt5>=5.15.11; sys_platform != 'win32'",
+    "pyqt5-qt5<=5.15.2; sys_platform == 'win32'",
+    "pyqt5>=5.15.11",
+    "pyaudio>=0.2.14",
+    "freetype-py>=2.5.1",
+    "pyqt5-stubs==5.15.6.0",
+]
