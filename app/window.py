@@ -3,7 +3,7 @@ import moderngl
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QSurfaceFormat
 from PyQt5.QtWidgets import QApplication, QOpenGLWidget, QShortcut
-from config import WINDOW_WIDTH, WINDOW_HEIGHT
+from config import APP_WIDTH, WINDOW_HEIGHT
 from utils import logger
 
 
@@ -15,7 +15,7 @@ class Window(QOpenGLWidget):
 
         self.t = None
         self.ctx = None
-        self.setFixedSize(WINDOW_WIDTH, WINDOW_HEIGHT)
+        self.setFixedSize(APP_WIDTH, WINDOW_HEIGHT)
 
         fmt = QSurfaceFormat()
         fmt.setVersion(3, 3)
