@@ -1,5 +1,5 @@
 from config import WINDOW_WIDTH, WINDOW_HEIGHT, PLAYLIST_WIDTH
-from source import File, Microphone, PlaylistSource
+from source import Microphone, PlaylistSource
 from window import Window
 from wave import Wave
 from spectrogram import Spectrogram
@@ -29,7 +29,9 @@ class App(Window):
         self.set_stylesheet()
 
         # Initialize with default file source
-        self.source = File(r"<add path to audio file here>")
+        self.switch_source("playlist")
+        self.playlist_widget.add_file_to_playlist(r"<add path to audio file here>")
+        self.play_first_file_in_playlist()
 
         # Set up visualisation components
         self.wave = Wave(
@@ -115,6 +117,12 @@ class App(Window):
             hz = i * 2000
             y = 830 - pixels_per_freq * hz + 2
             text.add(f"{hz} Hz", 70, y, align="right")
+
+    def play_first_file_in_playlist(self):
+        first_file = self.playlist_widget.playlist[0]
+        self.playlist_widget.current_index = 0
+        self.playlist_widget.highlight_current()
+        self.source.load_file(first_file)
 
     def setup_ui(self):
         """Set up the control panel UI"""
@@ -269,10 +277,7 @@ class App(Window):
                 self.playlist_widget.playlist
                 and self.playlist_widget.current_index == -1
             ):
-                first_file = self.playlist_widget.playlist[0]
-                self.playlist_widget.current_index = 0
-                self.playlist_widget.highlight_current()
-                self.source.load_file(first_file)
+                self.play_first_file_in_playlist()
 
     def on_playlist_file_selected(self, file_path):
         """Handle file selection from playlist"""
