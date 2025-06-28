@@ -1,5 +1,5 @@
-import moderngl
-import numpy as np
+from moderngl import LINES
+from numpy import zeros
 from utils import orthographic
 
 
@@ -44,7 +44,7 @@ void main() {
         else:
             num_ticks = int(h) // int(gap) + 1
 
-        vertices = np.zeros(num_ticks * 4, dtype='f4')
+        vertices = zeros(num_ticks * 4, dtype='f4')
         for idx in range(num_ticks):
             if horizontal:
                 vertices[idx * 4: (idx + 1) * 4] = [x + idx * gap, y, x + idx * gap, y + h]
@@ -59,4 +59,4 @@ void main() {
         self.prog['projection'].write(projection)
 
     def draw(self):
-        self.vao.render(mode=moderngl.LINES)
+        self.vao.render(mode=LINES)

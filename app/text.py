@@ -1,10 +1,6 @@
 import freetype
-import numpy as np
+from config import *
 from utils import orthographic
-
-
-SCALE = 2
-FONT_SIZE = 12
 
 
 class CharacterSlot:
@@ -74,7 +70,7 @@ class Text:
     def init_font(self, font):
         self.characters = dict()
 
-        size = int(FONT_SIZE * SCALE)
+        size = int(FONT_SIZE * FONT_SCALE)
         face = freetype.Face(font)
         face.set_pixel_sizes(size, size)
 
@@ -101,7 +97,7 @@ class Text:
         w = 0
         for c in text:
             character = self.characters[c]
-            w += (character.advance >> 6) / SCALE
+            w += (character.advance >> 6) / FONT_SCALE
         return w
 
     def add(self, text, x, y, align='left'):
@@ -124,6 +120,6 @@ class Text:
                 character.texture.use(0)
                 w = character.width
                 h = character.height
-                self.set_geometry(x, y, w / SCALE, h / SCALE)
+                self.set_geometry(x, y, w / FONT_SCALE, h / FONT_SCALE)
                 self.vao.render()
-                x += (character.advance >> 6) / SCALE
+                x += (character.advance >> 6) / FONT_SCALE

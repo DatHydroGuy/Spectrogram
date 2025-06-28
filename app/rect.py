@@ -1,4 +1,4 @@
-import numpy as np
+from numpy import array
 from utils import orthographic
 
 
@@ -38,7 +38,7 @@ void main() {
         )
         self.prog['colour'] = colour
 
-        vertices = np.array([
+        vertices = array([
             x, y,
             x + w, y,
             x + w, y + h,
